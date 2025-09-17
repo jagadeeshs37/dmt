@@ -1,0 +1,23 @@
+import pandas as pd
+
+# If file is in the same folder as your notebook/script
+df = pd.read_csv('pima-indians-diabetes.csv')
+
+print(df.head())
+
+from google.colab import files
+import pandas as pd
+
+# Upload file from your local machine (a prompt will appear)
+uploaded = files.upload()
+
+# uploaded is a dictionary with filename as key
+filename = list(uploaded.keys())[0]
+
+# Now load the CSV into a DataFrame
+df = pd.read_csv(filename)
+
+print(df.head())
+
+
+using pima indian diabeties
