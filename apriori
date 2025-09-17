@@ -1,1 +1,17 @@
+from google.colab import files
+upload = files.upload()
+import pandas as pd
+from mlxtend.frequent_patterns import apriori
+from mlxtend.frequent_patterns import association_rules
+df = pd.read_csv('store_data_Association.csv')
+df.head()
+df_stacked = df.stack().reset_index(level=1, drop=True).to_frame('Item')
+df_encoded = pd.get_dummies(df_stacked['Item'], prefix='', prefix_sep='').groupby(level=0).max().astype(int)
+display(df_encoded.head())
+frequent_itemsets = apriori(df_encoded, min_support=0.01, use_colnames=True)
+display(frequent_itemsets.head())
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.05)
+display(rules.head())
 
+
+using store data association
