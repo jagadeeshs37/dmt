@@ -1,0 +1,233 @@
+1: Import Required Libraries
+
+Code:
+
+import statistics
+
+import numpy as np
+
+import pandas as pd
+
+import seaborn as sns
+
+import matplotlib.pyplot as plt
+
+
+%matplotlib inline
+
+
+2: Define Dataset
+
+Code:
+
+data = [12, 15, 14, 10, 8, 12, 14, 16, 17, 22, 25, 30, 50]
+
+
+3: Measures of Central Tendency
+
+Code:
+
+mean_val = statistics.mean(data)
+
+median_val = statistics.median(data)
+
+print(f"Mean: {mean_val}")
+
+print(f"Median: {median_val}")
+
+print(f"Mode: {mode_val}")
+
+
+output:
+
+Mean: 18.846153846153847
+
+Median: 15
+
+Mode: 12
+
+
+4: Measures of Variability
+
+Code:
+
+range_val = max(data) - min(data)
+
+variance_val = statistics.variance(data)
+
+std_dev_val = statistics.stdev(data)
+
+
+print(f"Range: {range_val}")
+
+print(f"Variance: {variance_val}")
+
+print(f"Standard Deviation: {std_dev_val}")
+
+
+output:
+
+Range: 42
+
+Variance: 125.47435897435898
+
+Standard Deviation: 11.201533777762712
+
+
+5: Summary Using Pandas
+
+Code:
+
+df = pd.DataFrame(data, columns=["Values"])
+
+print(df.describe())
+
+
+output:
+
+Values
+
+count 13.000000
+
+mean 18.846154
+
+std 11.201534
+
+min 8.000000
+
+25% 12.000000
+
+50% 15.000000
+
+75% 22.000000
+
+max 50.000000
+
+
+6: Box Plot (to check outliers)
+
+Code:
+
+sns.boxplot(x=data)
+
+plt.title('Box Plot')
+
+plt.show()
+
+
+output:
+
+
+
+7: Histogram
+
+Code:
+
+plt.hist(data, bins=10, edgecolor='black')
+
+plt.title('Histogram')
+
+plt.xlabel('Values')
+
+plt.ylabel('Frequency')
+
+plt.show()
+
+
+output:
+
+
+8: Pie Chart
+
+Code:
+
+labels = ['<15', '15-25', '>25']
+
+counts = [
+
+sum(x < 15 for x in data),
+
+sum(15 <= x <= 25 for x in data),
+
+sum(x > 25 for x in data)
+
+]
+
+plt.pie(counts, labels=labels, autopct='%1.1f%%')
+
+plt.title('Pie Chart')
+
+plt.show()
+
+
+output:
+
+
+9: Bar Chart
+
+Code:
+
+value_counts = pd.Series(data).value_counts().sort_index()
+
+value_counts.plot(kind='bar', color='skyblue')
+
+plt.title('Bar Chart')
+
+plt.xlabel('Value')
+
+plt.ylabel('Frequency')
+
+plt.show()
+
+
+
+10: X-Y Plot
+
+Code:
+
+plt.plot(range(len(data)), data, marker='o', linestyle='-', color='green')
+
+plt.title('X-Y Plot')
+
+plt.xlabel('Index')
+
+plt.ylabel('Value')
+
+plt.grid(True)
+
+plt.show()
+
+
+output:
+
+
+11: Heatmap of Correlation
+
+Code:
+
+df2 = pd.DataFrame({
+
+'A': data,
+
+'B': sorted(data, reverse=True)
+
+})
+
+sns.heatmap(df2.corr(), annot=True, cmap='coolwarm')
+
+plt.title('Heatmap - Correlation Matrix')
+
+plt.show()
+
+
+output:
+
+
+
+Experiment Split-up Marks
+
+Problem Analysis (5)
+
+Program and Output (1
+
+mode_val = statistics.mode(data)
